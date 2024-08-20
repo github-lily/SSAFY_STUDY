@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      border: 2px solid black;
+      height: 500px;
+      display: flex;
+      justify-content: space-around;
+      align-itmes : center;
+      flex-wrap: wrap;
+      /* flex-wrap: wrap; : 창을 줄려서 공간이 좁아지면 칸이 작아지는게 아니라 아래로 내려감 */
+      /* flex-direction
+      - 메인 축을 세로로 바꾸는 것
+      - column 위에서부터 쌓임(세로로 작성됨)
+      - column-reverse : 하면 아래부터 쌓임
+      - row:default값
+      - row-reverse 오른쪽부터 쌓임
+      justify-cotent
+      - flex-end : 여백을 왼쪽으로 옮김 순서 그대로 콘텐츠를 오른쪽에 붙임
+      - 값을 center로 하면 메인축의 중심으로 이동 
+      - space-between : 좌우를 양 끝 벽에 붙인 뒤 나머지를 균등 분배 ㅁ 5 ㅁ 5 ㅁ
+      - space-around : 블럭마다 일정한 좌우 여백이 들어감 5 ㅁ 5 5 ㅁ 5
+      - space-evenly : 균등 분배 5 ㅁ 5 ㅁ 5
+      */
+      /* 교차축
+      align-itmes : center
+      교차축 중심으로 중앙 정렬
+       */
+    }
+    .item{
+      border: 2px solid blue;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+</head>
+<body>
+  <div class = "container">
+    <div class = "item">item1</div>
+    <div class = "item">item2</div>
+    <div class = "item">item3</div>
+    <div class = "item">item4</div>
+    <div class = "item">item5</div>
+    <div class = "item">item6</div>
+    <div class = "item">item7</div>
+    <div class = "item">item8</div>
+  </div>
+</body>
+</html>
