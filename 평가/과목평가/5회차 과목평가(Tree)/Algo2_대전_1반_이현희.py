@@ -13,14 +13,14 @@ sys.stdin = open("C:/Users/SSAFY/Desktop/0902/portfolio/평가/과목평가/5회
 # print(bin(ord('A')))    #0b1000001
 # print(bin(3))   #0b11
 
-'''
+
 # 중위순회
 def inorder(v) :
     global ans, password
 
     if v > 7: #아래에서 0을 곱하면 오류나므로 1번부터 시작 # 노드번호로는 1번부터 7번까지
         return
-or x in temp:
+    for x in temp:
         binary = bin(ord(x))
         binary = binary[2:]
         bin_lst.append(binary) #['1000001', '1000010', '1000011']
@@ -74,40 +74,40 @@ for tc in range(1,T+1) :
     # 값을 이진수로 변환 (트리에 넣을 수 있는 형태로 변환)
     
 
-'''
-# 다른 풀이
+
+ # 다른 풀이
 
 
-def dfs(v) :
-    global inorder_str
-    if v > 7 : return
-    dfs(v*2)
-    inorder_str += bin_str[v]
-    dfs(v*2+1)
+# def dfs(v) :
+#     global inorder_str
+#     if v > 7 : return
+#     dfs(v*2)
+#     inorder_str += bin_str[v]
+#     dfs(v*2+1)
 
-T = int(input())
-for tc in range(1,T+1) :
-    N = int(input())
-    arr = input()
+# T = int(input())
+# for tc in range(1,T+1) :
+#     N = int(input())
+#     arr = input()
 
-    # 이진수 출력
-    for ch in arr :
-        val = ord(ch)
-        bin_str = '0'
-        for i in range(6,-1,-1) :
-            if val & (1<<i) :
-                bin_str += '1'
-            else : 
-                bin_str += '0'
-        # print(bin_str)
+#     # 이진수 출력
+#     for ch in arr :
+#         val = ord(ch)
+#         bin_str = '0'
+#         for i in range(6,-1,-1) :
+#             if val & (1<<i) :
+#                 bin_str += '1'
+#             else : 
+#                 bin_str += '0'
+#         # print(bin_str)
 
-    # 인덱스로 직접 값 지정해서 풀 수도 있음..!
-    # for i in [3,1,4,0,5,2,6] :
-    #     inorder_str += bin_str[i]
+#     # 인덱스로 직접 값 지정해서 풀 수도 있음..!
+#     # for i in [3,1,4,0,5,2,6] :
+#     #     inorder_str += bin_str[i]
 
-    inorder_str = ''
+#     inorder_str = ''
 
 
-    dfs(1)
-    print(inorder_str, end = ' ')
-print()
+#     dfs(1)
+#     print(inorder_str, end = ' ')
+# print()
