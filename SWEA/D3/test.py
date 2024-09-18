@@ -1,24 +1,49 @@
-# 수정
+import sys
+sys.stdin = open("C:/Users/jhc03/Desktop/포트폴리오/SWEA/D3/test.txt")
 
 
-for tc in range(1,11) :
-    tc = int(input())
-    t = input()     #text
-    p = input()     #pattern
-    
-    n = len(t)
-    m = len(p)
+'''
+- #을 만나면 좌우 길이를 확인(1이면 안됨)
+- 좌우가 맞으면 네모가 모두 잘 채워져있는지 확인
+'''
 
-    cnt = s = 0
-    while s <= n-m :
-        found = True
-        # for s in range(n-m+1) : #s 범위 위에서 지정해주니까 따로 할 필요 없음
-        for i in range(m) :
-            if p[i] != t[s+i] :
-                found = False
-                break       #안맞으면 멈춤, 맞으면 끝까지 돈다
-        if found:
-            cnt += 1
-            s = s + m-1     #시작위치를 m 다음 인덱스로 이동, +1 있으니 -1
-        s += 1              #찾던 못찾던 다음으로 넘어갈 수 있게 +1
-    print(f'#{tc} {cnt}')
+
+def check_len(sr,sc) :
+    global cnt
+    for k in range(1,N) :
+        nr, nc = r+k,c+k
+        if 0 <= nr < N and 0 <= nc < N :
+            if arr[nr][sc] != arr[sr][nc] :
+                return 'no'
+            else : cnt += 1
+    return 'yes'
+
+def check_square(sr,sc) :
+    global cnt
+    for i in range(cnt) :
+        for j in range(cnt) :
+            if arr[i][j] != '#' :
+                return 'no'
+    return 'yes'
+        
+
+
+T = int(input())
+for tc in range(1,T+1) :
+    N = int(input())
+    arr = [list(input()) for _ in range(N)]
+    cnt = 1             # 변의 길이. 시작점을 포함하므로 1
+    result = 'yes'
+
+    for r in range(N) :
+        for c in range(N) :
+            # 좌우 길이 확인
+            if arr[r][c] == '#' :
+                result = check_len(r,c)
+                if result != 'no' :
+                    result = check_square(r,c)
+
+    print(f'#{tc} {result}')
+                
+                
+                
