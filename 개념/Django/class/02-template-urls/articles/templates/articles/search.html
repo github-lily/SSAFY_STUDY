@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Fake Naver</h1>
+  <form action="https://search.naver.com/search.naver" method="GET">
+      {% comment %}  로그인 할 때는 method="POST"를 사용(나중에씀~) {% endcomment %}
+
+    <input type="text" name="query">
+    <input type="submit">
+  </form>
+{% endblock content %}
