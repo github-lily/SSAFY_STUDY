@@ -1,3 +1,21 @@
-2
-5 3
-7 5
+5
+XOX.
+OX..
+....
+....
+XXXO
+..O.
+.O..
+T...
+OXXX
+XO..
+..O.
+...O
+XXXT
+....
+OO..
+....
+XOXT
+XXOO
+OXOX
+XXOO
