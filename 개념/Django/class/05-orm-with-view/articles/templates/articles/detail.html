@@ -13,7 +13,13 @@
   <p> 내용 : {{ article.content }}</p>
   <p> 수정일 : {{ article.created_at }}</p>
   <p> 삭제일 : {{ article.updated_at }}</p>
-  <hr><a href="{% url "articles:index" %}"></a>
+  <hr>
+  <form action="{% url "articles:delete" article.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value ="삭제">
+  </form>
+  <a href="{% url "articles:index" %}">[back]</a>
+  {% comment %} a태그는 POST 요청 불가 {% endcomment %}
   
 </body>
 </html>

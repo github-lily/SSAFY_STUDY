@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # 모델 클래스 가져오기
 from .models import Article
 
@@ -47,4 +47,41 @@ def create(request) :
     # # 저장3 : 유효성 검사(save 전에 해야함)를 하기 어려움
     # Article.objects.create(title = title, content = content)
 
-    return render(request, 'articles/create.html')
+    return redirect('articles:detail', article.pk)
+
+
+def delete(request,pk) :
+    # 어떤 게시글 삭제할지 조회
+    article = Article.objects.get(pk=pk)
+
+    # 조회한 게시글 삭제
+    article.delete()
+
+    return redirect('articles:index')
+
+def edit(request,pk) :
+    # 어떤 게시글을 수정할 지 조회
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article' : article,
+    }
+
+    return render(request, 'articles/edit.html.context')
+
+
+def update(request,pk) :
+    # 1. 어떤 게시글 수정할 지 조회
+    article = Article.objects.get(pk=pk)
+
+    # 2. 사용자로부터 받은 새로운 입력 데이터 추출
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+
+    # 3. 기존 게시글의 데이터를 사용자로 받은 데이터로 할당
+    article.title = title
+    article.conent = content
+
+    # 4. 저장
+    article.save()
+
+    return redirect('articles:detail', article.pk)

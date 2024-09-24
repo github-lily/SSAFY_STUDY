@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Edit</h1>
+  <form action={% url "artilces:update" article.pk %} method="POST">
+    {% csrf_token %}
+    <input type="text" name = "title" value = {{article.title}}>
+    <textarea name="content" id="">{{article.content}}</textarea>
+    {% comment %} textarea는 value가 없음 {% endcomment %}
+    <input type="submit" value="수정">
+  </form>
+  
+</body>
+</html>
