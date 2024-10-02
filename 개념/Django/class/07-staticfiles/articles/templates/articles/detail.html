@@ -6,12 +6,10 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Detail</h1>
   {% if article.image %}
-    <img src="{{article.image.url}}" alt="image">
-  {% else %}
-    <img src="{% static "ssafy.png" %}" alt="">
+    <img src="{{ article.image.url }}" alt="image">
   {% endif %}
+  <h1>Detail</h1>
   <h3>{{ article.pk }}번째 글</h3>
   <hr>
   <p>제목: {{ article.title }}</p>

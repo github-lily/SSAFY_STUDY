@@ -122,6 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
+    # Python 객체지향 경로 시스템
     BASE_DIR / 'static',
 ]
 
