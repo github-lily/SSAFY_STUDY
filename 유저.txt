@@ -1,0 +1,5 @@
+1. [models.py] custom user 모델 정의
+2. [settings.py] django에게 기존 user 모델의 accounts의 user 모델로 변경한다고 알려줌
+	- AUTH_USER_MODEL='accounts.User'
+
+3. [admin.py] admin 사이트에서 accounts의 user를 사용가능하게 설정
