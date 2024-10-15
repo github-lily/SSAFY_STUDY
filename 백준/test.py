@@ -1,23 +1,19 @@
 import sys
-sys.stdin = open("C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt")
+sys.stdin = open("C:/Users/SSAFY/Desktop/portfolio/백준/test.py")
 
 
-def dfs(n,s,lst) :
-
+def dfs(n,tlst) :
     if n == M :
-        ans.append(lst)
+        lst.append(tlst)
         return
     
-    if s > N :
-        return
-
-    for j in range(s,N+1) :
-        dfs(n+1,j,lst+[j])
+    for i in range(N) :
+        dfs(n+1,tlst+[nlst[i]])
 
 N,M = map(int,input().split())
-ans = []
+nlst = sorted(list(map(int,input().split())))
+lst = []
 
-dfs(0,1,[])
 
-for lst in ans :
-    print(*lst)
+for ans in lst :
+    print(*ans)
