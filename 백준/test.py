@@ -2,60 +2,38 @@ import sys
 sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
 
 
-# dr = []
 
-# T = int(input())
-# for tc in range(1,T+1) :
-#     N = int(input())
-#     arr = [list(map(int,input().split())) for _ in range(N)]
-
-#     ans = -1
-#     for i in range(N) :
-#         for j in range(N) :
-#             dfs(i,j,[],0)
-    
-#     print(ans)
-
-
-
-def dfs(r,c,cnt) :
-    global ans, sr,sc, er, ec
-    
-    if cnt > ans :
-        return
-    
-    if r == er and c == ec :
-        ans = min(ans,cnt)
-        return ans
-    
-    # 오른쪽과 아래만 확인하면 됨(우하)
-    dr = [0,1]
-    dc = [1,0]
-    for i in range(2) :
-        nr, nc = r + dr[i], c+dc[i]
-        # 체스판의 범위 이내여야 함
-        if sr<= nr <= er and sc<= nc <= ec :
-            if arr[r][c] == arr[nr][nc] :   # 같다면
+# 비교하며 다시 칠해줄 함수
+def reapaint_cnt(temp, chess) :
+    cnt = 0
+    for i in range(8) :
+        for j in range(8) :
+            if temp[i][j] != chess[i][j] :
+                # temp[i][j] = chess[i][j]        
+                # 값을 바꾸면 원본도 바뀌어 정확한 비교가 안됨!
                 cnt += 1
-                if arr[r][c] == 'W' :
-                    arr[nr][nc] = 'B'
-                else :
-                    arr[nr][nc] = 'W'
-    
-    
+    return cnt
 
 
 M,N = map(int,input().split())
-arr = [list(input()) for _ in range(M)]
+arr = [input() for _ in range(N)]
 ans = 99999999999999999999999999999999999999999999999
 
-for i in range(N) :
-    for j in range(M) :
-        # 오른쪽, 아래쪽으로 8x8을 만들 수 있을 때 dfs 호출
-        # 종료를 위해 끝 지점 저장
-        sr, sc = i,j
-        er, ec = i+7, j+7
-        if 0<= er <M and 0<=ec<N :
-            dfs(i,j,0)
+
+
+
+# 시작의 2가지 경우를 정의
+W_start = ['WBWBWBWB','BWBWBWBW'] *4
+B_start = ['BWBWBWBW','WBWBWBWB'] *4
+
+
+# 8x8을 만들 수 있는 범위만 돌기 (N-8+1)
+for r in range(N-7) :
+    for c in range(M-7) :
+        # 임시 보드판 가져오기
+        temp = [row[c:c+8] for row in arr[r:r+8]]
+        W_start_cnt = reapaint_cnt(temp,W_start)
+        B_start_cnt = reapaint_cnt(temp,B_start)
+        ans = min(W_start_cnt,B_start_cnt,ans)
 
 print(ans)
