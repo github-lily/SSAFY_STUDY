@@ -1,18 +1,13 @@
 import sys
-sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
+sys.stdin = open('C:/Users/SSAFY/Desktop/portfolio/백준/test.txt')
 
+max_v = 0
+max_idx = 0
+for i in range(1,10) :
+    num = int(input())
+    if num > max_v :
+        max_v = num
+        max_idx = i
 
-
-
-t = int(input())
-
-for _ in range(t):
-  n = int(input())
-  ctx = {}
-
-  for _ in range(n):
-    s, l = input().split()
-
-    ctx[s] = ctx.get(s, 0) + int(l)
-
-  print(max(ctx, key=ctx.get))
+print(max_v)
+print(max_idx)
