@@ -35,7 +35,7 @@ N = int(input())
 arr = [list(map(int,input())) for _ in range(N)]
 
 v = [[0]*(N) for _ in range(N)]     # 방문 배열
-village_house = {}  # 단지별 집의 수 저장
+village_house = []  # 단지별 집의 수 저장
 village = 0         # 단지 수
 house = 1           # 집의 수
 
@@ -44,12 +44,13 @@ for i in range(N) :
     for j in range(N) :
         if v[i][j] == 0 and arr[i][j] == 1 :
             bfs(i,j)
-            village_house[village] = house
+            village_house.append(house)
             house = 1       #집의 수 초기화(현재 위치도 집이므로 +1로 시작)
             # 키 값을 마을수로 정해서 자동 증가하도록 함
 
 
 
 print(village)
-for i, (key,value) in enumerate(village_house.items()) :
-    print(f'{value}')
+village_house = sorted(village_house)
+for home in village_house :
+    print(home)
