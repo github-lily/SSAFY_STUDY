@@ -1,49 +1,55 @@
 import sys
 sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
 
-# 이동 방향 리스트 오른쪽, 대각선, 아래
-di = [0,1,1]
-dj = [1,1,0]
+
+from collections import deque
+
+# 네방향 탐색
+di = [0,1,0,-1]
+dj = [1,0,-1,0]
 
 
+def bfs(i,j) :
+    global village, house
+    house = 1  # 새로운 단지를 탐색할 때 집의 수를 1로 초기화
 
-# 행, 열, 방향
-def dfs(i,j,dir) :
-    global cnt
+    q = deque()
+    q.append((i,j))
+    v[i][j] = 1
 
-    if i == N-1 and j == N-1 :
-        cnt += 1
-        return 
+    while q:
+        ci,cj = q.popleft()
+        for k in range(4) :
+            ni,nj = ci+di[k], cj+dj[k]
+            # 범위 내에 있고, 방문하지 않았고, 집이라면
+            if 0<=ni<N and 0<=nj<N and v[ni][nj] == 0 and arr[ni][nj] == 1 :
+                v[ni][nj] = 1
+                house += 1
+                q.append((ni,nj))
 
-
-    for k in range(3) :
-        ni,nj = i+di[k], j+dj[k]
-
-        # 45도씩 움직일 수 있으므로 조건 걸어주기
-        # 방향 제한 조건 (가로 -> 세로, 세로 -> 가로 불가)
-        if (dir == 0 and k == 2) or (dir == 2 and k == 0) :
-            continue
-
-        if 0<=ni<N and 0<=nj<N and arr[ni][nj] == 0 :       # 벽은 못감
-            if k == 1 :     # 대각선일 경우 추가 벽 확인
-                if arr[i][j+1] == 0 and arr[i+1][j] == 0 :  # 오른쪽 아래 벽인지 확인
-                    dfs(ni,nj,k)
-            else :
-                dfs(ni,nj,k)
-
+    village += 1
     
     
-
-# 시작
 
 N = int(input())
-arr = [list(map(int,input().split())) for _ in range(N)]
+arr = [list(map(int,input())) for _ in range(N)]
 
-cnt = 0
+v = [[0]*(N) for _ in range(N)]     # 방문 배열
+village_house = {}  # 단지별 집의 수 저장
+village = 0         # 단지 수
+house = 1           # 집의 수
 
-# 기준점을 끝으로 둠 (앞이 N,N에 닿을 가능성 0 (범위 벗어남))
-# 행, 열, 놓인 방향(0 가로, 1 대각선, 2 세로)
-# 시작점 0,1 (주의!)
-dfs(0,1,0)
 
-print(cnt)
+for i in range(N) :
+    for j in range(N) :
+        if v[i][j] == 0 and arr[i][j] == 1 :
+            bfs(i,j)
+            village_house[village] = house
+            house = 1       #집의 수 초기화(현재 위치도 집이므로 +1로 시작)
+            # 키 값을 마을수로 정해서 자동 증가하도록 함
+
+
+
+print(village)
+for i, (key,value) in enumerate(village_house.items()) :
+    print(f'{value}')
