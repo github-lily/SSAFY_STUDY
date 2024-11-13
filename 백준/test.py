@@ -7,13 +7,13 @@ def dfs(n,alst,blst) :
     if n == N :                     #재료를 모두 다 담으면 
         return  
     
-    if len(blst) == M :
-        asum=bsum=0                 # 요리의 맛
-        for i in range(M) :         # 재료 리스트의 개수가 M이므로 M까지
-            for j in range(M) :
-                asum += arr[alst[i]][alst[j]]
-                bsum += arr[blst[i]][blst[j]]
-        ans = min(ans,abs(asum-bsum))   
+        if len(blst) == M :
+            asum=bsum=0                 # 요리의 맛
+            for i in range(M) :         # 재료 리스트의 개수가 M이므로 M까지
+                for j in range(M) :
+                    asum += arr[alst[i]][alst[j]]
+                    bsum += arr[blst[i]][blst[j]]
+            ans = min(ans,abs(asum-bsum))   
     
     # A 재료담기
     dfs(n+1,alst+[n],blst) 
