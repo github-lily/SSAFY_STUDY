@@ -1,60 +1,61 @@
 import sys
-sys.stdin = open('C:/Users/SSAFY/Desktop/portfolio/백준/test.txt')
-
+sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
 
 
 import heapq
 
-V,E = map(int,input().split())
-start = int(input())
 
 INF = int(1e9)
-# V개의 정점에서 V개의 정점으로 가는 최단경로 기록 리스트
-min_val = [INF]*(V+1)
-
-# 연결 관계를 담을 리스트(1번부터 시작)
-lst = [[] for _ in range(V+1)]
+N,E = map(int,input().split())
+connect = [[] for _ in range(N+1)]      # 정점번호 1부터 시작
 
 
 for _ in range(E) :
-    u,v,w = map(int,input().split())        # u에서 v로 가는 가중치 w
-    lst[u].append((w,v))                    # 가중치, 연결 정점
-
-
-def dijkstra(start) :
-    q = []
-    heapq.heappush(q,(0,start))         # 시작지점의 가중치 0과 시작지점
-    min_val[start] = 0
-
-    while q :
-        cost, now  = heapq.heappop(q)
-
-        # 이미 있는 최단경로보다 크다면 패스
-        if cost > min_val[now] :
-            continue
-
-        # 현재 노드에서 다음 노드로 갈 때 필요한 임시 가중치 / 임시 지점
-        for next_cost, next in lst[now] :
-            go_cost = cost + next_cost       # pre 포인트로 갈 때 드는 총 가중치 = 현재 가중치 + (현재->다음 가중치)
-            if go_cost < min_val[next] :
-                min_val[next] = go_cost
-                heapq.heappush(q,(go_cost,next))
-            
-
-# 다익스트라 호출
-dijkstra(start)
-
-# 출력
-for k in min_val[1:] :      # 0번은 필요없는 값
-    if k == INF :
-        print('INF')
-    else :
-        print(k)
-
+    a,b,c = map(int,input().split())
+    connect[a].append((b,c))
+    connect[b].append((a,c))
     
 
-            
-            
+# 방문해야하는 포인트
+p1,p2 = map(int,input().split())
 
 
-            
+# 시작점부터 각 노드까지의 최단경로 함수
+def dikjstra(start) :
+    distance = [INF]*(N+1)                      # 시작점부터 각 노드까지의 최단경로 리스트
+
+    q = []
+    heapq.heappush(q,(0,start))           # 시작지점은 거리 0
+    distance[start] = 0
+
+    while q :
+        now_distance, node = heapq.heappop(q)
+
+
+        if distance[node] < now_distance :
+            continue
+
+        for next, next_distance in connect[node] :
+            total_distance = next_distance + now_distance
+            if distance[next] > total_distance :
+                distance[next] = total_distance
+                heapq.heappush(q,(total_distance,next))
+
+    return distance
+
+
+from_start = dikjstra(1)
+from_p1 = dikjstra(p1)
+from_p2 = dikjstra(p2)
+
+# 최단 경로는 1 -> p1 -> p2 -> N 또는 1-> p2 -> p1 -> N 둘 중 하나
+route1 = from_start[p1] + from_p1[p2] + from_p2[N]
+route2 = from_start[p2] + from_p2[p1] + from_p1[N]
+
+
+ans = min(route1, route2)
+
+if ans >= INF :
+    ans = -1
+    
+print(ans)
