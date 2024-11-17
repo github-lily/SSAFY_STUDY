@@ -1,61 +1,31 @@
 import sys
 sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
 
-
-import heapq
-
-
+N = int(input())
+arr = [list(map(int,input().split())) for _ in range(N)]
 INF = int(1e9)
-N,E = map(int,input().split())
-connect = [[] for _ in range(N+1)]      # 정점번호 1부터 시작
+ans = INF
 
 
-for _ in range(E) :
-    a,b,c = map(int,input().split())
-    connect[a].append((b,c))
-    connect[b].append((a,c))
+
+
+# first : 첫번째 집의 색상
+for first in range(3) :
+    # 색상별로 최솟값을 기록해둘 배열
+    dp = [[INF]*3 for _ in range(N)]
+    dp[0][first] = arr[0][first]        # 첫번째로 칠할 집 색상만 기록
     
-
-# 방문해야하는 포인트
-p1,p2 = map(int,input().split())
-
-
-# 시작점부터 각 노드까지의 최단경로 함수
-def dikjstra(start) :
-    distance = [INF]*(N+1)                      # 시작점부터 각 노드까지의 최단경로 리스트
-
-    q = []
-    heapq.heappush(q,(0,start))           # 시작지점은 거리 0
-    distance[start] = 0
-
-    while q :
-        now_distance, node = heapq.heappop(q)
+    # dp 테이블 채우기
+    for i in range(1,N) :
+        dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + arr[i][0]
+        dp[i][1] = min(dp[i-1][0], dp[i-1][2]) + arr[i][1]
+        dp[i][2] = min(dp[i-1][0], dp[i-1][1]) + arr[i][2]
 
 
-        if distance[node] < now_distance :
-            continue
 
-        for next, next_distance in connect[node] :
-            total_distance = next_distance + now_distance
-            if distance[next] > total_distance :
-                distance[next] = total_distance
-                heapq.heappush(q,(total_distance,next))
+    # 첫번째 집의 색상과 마지막 집의 색상이 다를 때에만 결과 갱신
+    for last in range(3) :
+        if first != last :
+            ans = min(ans,dp[N-1][last])
 
-    return distance
-
-
-from_start = dikjstra(1)
-from_p1 = dikjstra(p1)
-from_p2 = dikjstra(p2)
-
-# 최단 경로는 1 -> p1 -> p2 -> N 또는 1-> p2 -> p1 -> N 둘 중 하나
-route1 = from_start[p1] + from_p1[p2] + from_p2[N]
-route2 = from_start[p2] + from_p2[p1] + from_p1[N]
-
-
-ans = min(route1, route2)
-
-if ans >= INF :
-    ans = -1
-    
 print(ans)
