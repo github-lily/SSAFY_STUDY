@@ -1,22 +1,59 @@
 import sys
-sys.stdin = open('C:/Users/jhc03/Desktop/포트폴리오/백준/test.txt')
+sys.stdin = open('백준/test.txt')
 
-T = int(input())
-max_val = 0
-for _ in range(T) :
-    a,b,c = map(int,input().split())
 
-    if a == b == c :
-        ans = 10000+(a*1000)
-    elif a == b or a == c :
-        ans = 1000+(a*100)
-    elif b == c :
-        ans = 1000+(b*100)
-    else :
-        ans = max(a,b,c)*100
+import heapq
 
-    if max_val < ans :
-        max_val = ans
+N,K = map(int,input().split())
 
-print(max_val)
-    
+# 필요 변수 선언
+
+INF = int(1e9)
+time_lst = [[INF] * (max(N,K)*100)]
+time = 0
+
+def dijkstra(start) :
+    q = heapq()
+    heapq.heappush(q,(time,start))
+
+    while q :
+        sec, X = heapq.heappop(q)
+
+        if sec > time_lst[X] :
+            continue
+
+        # 동생을 찾으면 종료
+        if X == K :
+            return
+
+        elif 2*X == K :
+            return
+        
+        elif X-1 == K or X+1 == K :
+            if time_lst[K] > sec+1 :
+                time_lst[K] = sec+1
+            return
+        
+        # 동생을 못찾으면 탐색
+        elif X-1 != K :
+            if time_lst[X-1] > sec+1 :
+                time_lst[X-1] = sec+1
+            heapq.heappush(q,(sec+1,X-1))
+        
+        elif X+1 != K :
+            if time_lst[X+1] > sec+1 :
+                time_lst[X+1] = sec+1
+            heapq.heappush(q,(sec+1,X+1))
+
+        elif X*2 != K :
+            if time_lst[X*2] > sec :
+                time_lst[X*2] = sec
+            heapq.heappush(q,(sec,X*2))
+        
+
+dijkstra(N)
+
+ans = time_lst[K]
+
+print(ans)
+
