@@ -1,44 +1,21 @@
 import sys
 sys.stdin = open('백준/test.txt')
+# 시간초과
+# 아무래도 append, for문 2개,,
+# N값이 100만개까지라서 초과
 
+N = int(input())
 
-from collections import deque
+# 원본 리스트
+X = list(map(int,input().split()))
 
+# 중복 제거 후 정렬(리스트로 반환됨)
+Y = sorted(set(X))     # [-10, -9, 2, 4]
 
-N,M,R = map(int,input().split())
-adj = [[] for _ in range(N+1)]
-visit = [0]*(N+1)
+# enumerate : index, value를 반환
+num_dict = {value: idx for idx, value in enumerate(Y)}      
 
-# 인접리스트 받기
-for _ in range(M) :
-    u,v = map(int,input().split())
-    adj[u].append(v)
-    adj[v].append(u)
+# 결과 생성
+ans = [num_dict[number] for number in X]
 
-# 오름차순으로 정렬
-for edges in adj :
-    edges.sort()
-
-
-# 너비우선탐색
-def bfs(start) :
-    q = deque([start])
-    order = 1
-    visit[start] = order
-
-    while q :
-        c = q.popleft()
-        
-        for w in adj[c] :
-            if visit[w] == 0 :
-                order += 1
-                visit[w] = order
-                q.append(w)
-
-
-bfs(R)
-
-for i in range(1,N+1) :
-    print(visit[i])
-
-
+print(*ans)
