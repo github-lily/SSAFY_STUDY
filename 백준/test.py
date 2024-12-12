@@ -5,48 +5,43 @@ sys.stdin = open('백준/test.txt')
 import sys
 input = sys.stdin.readline
 
-from collections import deque
+M = int(input())
+S = set()
 
-N = int(input())
-q = deque()
-ans = 0
+# all_S = [x for x in range(1,21)]
+# 속도를 위해 set으로 만듦
 
-for _ in range(N) :
-    command = input().split()
+all_S = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
-    if len(command) > 1 :
-        x = int(command[1])
-        q.append(x)
-        
+
+for _ in range(M) :
+    request = input().split()
+
+    if request[0] == 'all' :
+        S = all_S
+
+    elif request[0] == 'empty' :
+        S = set()
+    
+    # 이 경우엔 무조건 request[1]이 존재함함
     else :
-        if command[0] == 'pop' :
-            if q :
-                ans = q.popleft()
-            else :
-                ans = -1
+        if request[0] == 'add' :
+            S.add(int(request[1]))
 
-        elif command[0] == 'size' :
-            ans = len(q)
+        elif request[0] == 'remove' :
+            S.remove(int(request[1]))
 
-        elif command[0] == 'empty' :
-            if q :
-                ans = 0
+        elif request[0] == 'check' :
+            if int(request[1]) in S :
+                print(1)
             else :
-                ans = 1
-        
-        elif command[0] == 'front' :
-            if q :
-                ans = q[0]
-            else :
-                ans = -1
+                print(0)
 
-        
-        elif command[0] == 'back' :
-            if q :
-                ans = q[-1]
+        elif request[0] == 'toggle' :
+            if int(request[1]) in S :
+                S.remove(int(request[1]))
             else :
-                ans = -1
+                S.add(int(request[1]))
 
-        print(ans)
 
 
