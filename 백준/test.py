@@ -23,13 +23,14 @@ for _ in range(M) :
     elif request[0] == 'empty' :
         S = set()
     
-    # 이 경우엔 무조건 request[1]이 존재함함
+    # 이 경우엔 무조건 request[1]이 존재함
     else :
         if request[0] == 'add' :
             S.add(int(request[1]))
 
         elif request[0] == 'remove' :
-            S.remove(int(request[1]))
+            S.discard(int(request[1]))
+            # 값이 없어도 에러를 발생시키지 않음
 
         elif request[0] == 'check' :
             if int(request[1]) in S :
@@ -42,6 +43,5 @@ for _ in range(M) :
                 S.remove(int(request[1]))
             else :
                 S.add(int(request[1]))
-
 
 
