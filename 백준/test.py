@@ -1,8 +1,10 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-input = sys.stdin.readline
+T = int(input())
+for _ in range(T) :
+    R,S = input().split()
 
-while input :
-    A,B = map(int,input().split())
-    print(A+B)
+    for i in S :
+        print(i*int(R), end="")
+    print()
