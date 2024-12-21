@@ -2,35 +2,33 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 
-from collections import deque
+from collections import defaultdict     # 딕셔너리 기본값 관리
 
 
+N = int(input())
+tang = list(map(int,input().split()))
 
-def find(start,end) :
-
-    q = deque()
-    v = [0]*200001
-
-    q.append(start)
-    v[start] = 1
-
-    while q :
-        cn = q.popleft()
-
-        if cn == end :
-            return v[cn]-1
-        
-        for w in (2*cn, cn-1, cn+1) :
-            if 0<= w < 200000 :        # 범위 내
-                if v[w] ==0 :
-                    v[w] = v[cn] +1
-                    q.append(w)
-                    
-    return -1       # 디버깅용용
+def max_fruit_length(tang) :
+    l, r = 0,0
+    max_length = 0
+    fruit_type = defaultdict(int)
 
 
-N,K = map(int,input().split())
+    while r < len(tang) :
+        fruit_type[tang[r]] += 1    # 현재 과일 추가
+
+        while len(fruit_type) > 2 :
+            fruit_type[tang[l]] -= 1
+            if fruit_type[tang[l]] == 0 :
+                del fruit_type[tang[l]]
+            l += 1
 
 
-ans = find(N,K)
+        max_length = max(max_length, r-l+1)
+        r += 1
+
+    return max_length
+
+
+ans = max_fruit_length(tang)
 print(ans)
