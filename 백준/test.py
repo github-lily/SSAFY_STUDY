@@ -1,27 +1,18 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
+N = int(input())
 
-# while True :
-#     a,b,c = map(int,input().split())
+temp = [[] for _ in range(50)]      # 단어 길이 50 이하하
+for _ in range(N) :
+    word = input()
+    temp[len(word)-1].append(word)  # 길이순 입력
 
-#     if a == b == c == 0 :
-#         break
-
-#     if a*a + b*b == c*c :
-#         print('right')
-#     else :
-#         print('wrong')
-
-
-while True :
-    lenght = sorted(map(int,input().split()))
-
-    if sum(lenght) == 0 :
-        break
-
-    if lenght[0]**2 + lenght[1]**2 == lenght[2]**2 :
-        print('right')
-    else :
-        print('wrong')
-
+# 사전순 정렬
+for words in temp :
+    test = ''                       # 중복 체크
+    if words :                      # 값이 있을 때 확인
+        for word in sorted(words) :
+            if word != test :
+                print(word)
+                test = word
