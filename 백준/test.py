@@ -3,16 +3,25 @@ sys.stdin = open('백준/test.txt')
 
 N = int(input())
 
-temp = [[] for _ in range(50)]      # 단어 길이 50 이하하
-for _ in range(N) :
-    word = input()
-    temp[len(word)-1].append(word)  # 길이순 입력
+shirts = list(map(int,input().split()))
+T, P = map(int,input().split())
 
-# 사전순 정렬
-for words in temp :
-    test = ''                       # 중복 체크
-    if words :                      # 값이 있을 때 확인
-        for word in sorted(words) :
-            if word != test :
-                print(word)
-                test = word
+# 구매해야하는 개수
+t = 0
+
+
+for size in shirts :
+    moc = size // T
+    remain = size % T
+
+    if remain == 0 :
+        t += moc
+    else :      # 나머지가 있다면 한세트 추가
+        t += (moc + 1)
+
+
+p_set = N // P
+p_each = N % P
+
+print(t)
+print(p_set, p_each)
