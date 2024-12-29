@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-N =int(input())
-number = list(input())
+S = input()
+i = int(input())
 
-print(sum(map(int,number)))
+print(S[i-1])
