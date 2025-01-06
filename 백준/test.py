@@ -1,28 +1,26 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-N,M = map(int,input().split())
-hear = []
-watch = []
-union = []
+
+N = int(input())
+
+cnt = 0
+
+while N > 1 :
+    
+    if N % 3 == 0 :
+        N = N // 3
+        cnt += 1
+    
+    elif N % 2 == 0 :
+        N = N // 2
+        cnt += 1
+
+    
+    else :
+        N = N - 1
+        cnt += 1
 
 
-for _ in range(N) :
-    h = input()
-    hear.append(h)
+print(cnt)
 
-for _ in range(M) :
-    w = input()
-    watch.append(w)
-
-
-hear = sorted(hear)
-watch = sorted(watch)
-
-for name in hear :
-    if name in watch :
-        union.append(name)
-
-print(len(union))
-for name in union :
-    print(name)  
