@@ -1,14 +1,28 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-N = int(input())
-times = map(int,input().split())
+N,M = map(int,input().split())
+hear = []
+watch = []
+union = []
 
-times = sorted(times)
 
-dp = [0]*N
-dp[0] = times[0]
-for i in range(1,N) :
-    dp[i] = dp[i-1] + times[i]
+for _ in range(N) :
+    h = input()
+    hear.append(h)
 
-print(sum(dp))
+for _ in range(M) :
+    w = input()
+    watch.append(w)
+
+
+hear = sorted(hear)
+watch = sorted(watch)
+
+for name in hear :
+    if name in watch :
+        union.append(name)
+
+print(len(union))
+for name in union :
+    print(name)  
