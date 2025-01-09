@@ -1,52 +1,40 @@
 import sys
-sys.stdin = open('백준/test.txt')
-
-
-L,C = map(int,input().split())
-char = sorted(list(input().split()))
-
-
-code = [0]*L
-vowel = ['a','e','i','o','u']
-
-
-def check() :
-    vowel = 0
-    consonant = 0
-
-    for k in code :
-        if k == 'a' or k == 'e' or k == 'i' or k == 'o' or k == 'u' :
-            vowel += 1
-        else :
-            consonant += 1     
-
-    if consonant >= 2 and vowel >= 1 :
-        return True 
-
-    return False
+sys.stdin = open('portfolio/백준/test.txt')
 
 
 
-def combi(old_idx, new_idx) :
-    global consonant_flag, vowel_flag
-
-    # 암호 개수를 채우면 종료
-    if new_idx == L :
-        if check() :
-            ans = ''.join(code)
-            print(ans)
+def dfs(n,tlst) :
+    if len(tlst) == M :
+        lst.append(tuple(tlst))
         return
-
-    # 배열의 끝에 도달하면 종료
-    if old_idx == C :
-        return
-
-
-    code[new_idx] = char[old_idx]
-    combi(old_idx+1, new_idx+1)
-
-
-    combi(old_idx+1, new_idx)
     
+    if n == N :
+        return
+    
+    
+    for i in range(N) :
+        if v[i] == 0 :
+            v[i] = 1
+            dfs(n+1,tlst+[nlst[i]])
+            v[i] = 0
 
-combi(0,0)
+        else :
+            dfs(n+1,tlst)
+
+
+N,M = map(int,input().split())
+nlst = list(map(int,input().split()))
+lst = []
+v = [0]*N
+
+dfs(0,[])
+
+set_lst = set(lst)
+
+ans_lst = sorted(list(set_lst))
+
+
+for ans in ans_lst :
+    print(*ans)
+
+
