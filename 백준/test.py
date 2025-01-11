@@ -1,40 +1,21 @@
 import sys
-sys.stdin = open('portfolio/백준/test.txt')
+sys.stdin = open('백준/test.txt')
 
 
+s1 = input()
+s2 = input()
 
-def dfs(n,tlst) :
-    if len(tlst) == M :
-        lst.append(tuple(tlst))
-        return
-    
-    if n == N :
-        return
-    
-    
-    for i in range(N) :
-        if v[i] == 0 :
-            v[i] = 1
-            dfs(n+1,tlst+[nlst[i]])
-            v[i] = 0
+n = len(s1)
+m = len(s2)
 
-        else :
-            dfs(n+1,tlst)
+dp = [0]*m
 
+for i in range(n) :
+    temp = 0
+    for j in range(m) :
+        if temp < dp[j] :
+            temp = dp[j]        # 지금까지의 최대값 저장
+        elif s1[i] == s2[j] :   # dp[j]의 값이 더 크다면 이미 계산된 글자이므로 elif(다시 계산할 필요 없음)
+            dp[j] = temp + 1    
 
-N,M = map(int,input().split())
-nlst = list(map(int,input().split()))
-lst = []
-v = [0]*N
-
-dfs(0,[])
-
-set_lst = set(lst)
-
-ans_lst = sorted(list(set_lst))
-
-
-for ans in ans_lst :
-    print(*ans)
-
-
+print(max(dp))
