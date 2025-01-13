@@ -1,15 +1,12 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
+a = int(input())
+b = int(input())
+c = int(input())
 
-N = int(input())
-
-i = 1
-while i <= N :
-    print(i)
-    i += 1
-
-
+print(a+b-c)
+print(int(str(a)+str(b))-c)
 
 # n = int(input())
 # arr = [list(map(int,input().split())) for _ in range(n)]
