@@ -2,13 +2,12 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 
-N,X = map(int,input().split())
-lst = map(int,input().split())
+N, M = map(int,input().split())
+basket = [0] * (N+1)
+for _ in range(M) :
+  i,j,k = map(int,input().split())
+  
+  for idx in range(i,j+1) :
+    basket[idx] = k
 
-num_lst = []
-
-for num in lst :
-  if num < X :
-    num_lst.append(num)
-
-print(*num_lst)
+print(*basket[1:])
