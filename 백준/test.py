@@ -3,11 +3,10 @@ sys.stdin = open('백준/test.txt')
 
 
 N, M = map(int,input().split())
-basket = [0] * (N+1)
-for _ in range(M) :
-  i,j,k = map(int,input().split())
-  
-  for idx in range(i,j+1) :
-    basket[idx] = k
+basket = [x for x in range(1,N+1)]
 
-print(*basket[1:])
+for _ in range(M) :
+  i,j = map(int,input().split())
+  basket[i-1],basket[j-1] = basket[j-1],basket[i-1]
+
+print(*basket)
