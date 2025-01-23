@@ -1,15 +1,15 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
+arr = [list(map(int,input().split())) for _ in range(9)]
+max_val = 0
+max_point = [0,0]
 
-N, M = map(int,input().split())
-arr = [list(map(int,input().split())) for _ in range(N)]
-arr2 = [list(map(int,input().split())) for _ in range(N)]
+for i in range(9) :
+  for j in range(9) :
+    if max_val < arr[i][j] :
+      max_val = arr[i][j]
+      max_point = [i+1,j+1]
 
-
-for i in range(N) :
-  for j in range(M) :
-    arr[i][j] += arr2[i][j]
-
-for line in arr :
-  print(*line)
+print(max_val)
+print(*max_point)
