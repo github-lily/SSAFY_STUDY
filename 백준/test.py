@@ -4,21 +4,14 @@ sys.stdin = open('백준/test.txt')
 N = int(sys.stdin.readline().strip())
 
 
-for _ in range(N) :
-  x,y = map(int,sys.stdin.readline().strip().split())
+# 위쪽 삼각형 출력
+for i in range(1, N + 1):
+    spaces = ' ' * (N - i)
+    stars = '*' * (2 * i - 1)
+    print(spaces + stars)
 
-  x = x%10
-  if x == 0 :
-    print(10)
-    continue
-
-
-  cycle = []
-  temp = x
-  while temp not in cycle :
-    cycle.append(temp)
-    temp = (temp * x) % 10
-
-  
-  idx = (y-1) % len(cycle)
-  print(cycle[idx])
+# 아래쪽 삼각형 출력
+for i in range(N - 1, 0, -1):
+    spaces = ' ' * (N - i)
+    stars = '*' * (2 * i - 1)
+    print(spaces + stars)
