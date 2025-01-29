@@ -1,7 +1,10 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-N = int(sys.stdin.readline().strip())
+# N = int(sys.stdin.readline().strip())
 
-
-print(N-543)
+print("|\_/|")
+print("|q p|   /}")
+print("( 0 )\"\"\"\\")
+print("|\"^\"`    |")
+print("||_/=\\\\__|")
