@@ -4,12 +4,9 @@ sys.stdin = open('백준/test.txt')
 # N = int(sys.stdin.readline().strip())
 
 
-while True :
-    a,b = map(int,input().split())
-    if a == b == 0 :
-        break
+N = int(input())
 
-    if a > b :
-        print('Yes')
-    else :
-        print('No')
+for i in range(1,N+1) :
+    spaces = ' '*(N-i)
+    star = '*'*i
+    print(spaces+star)
