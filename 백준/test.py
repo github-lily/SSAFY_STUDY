@@ -5,8 +5,9 @@ sys.stdin = open('백준/test.txt')
 
 
 N = int(input())
+sum_val = 0
 
-for i in range(1,N+1) :
-    spaces = ' '*(N-i)
-    star = '*'*i
-    print(spaces+star)
+for i in range(N+1) :
+    sum_val += i
+
+print(sum_val)
