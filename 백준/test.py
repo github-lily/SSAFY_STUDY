@@ -3,11 +3,15 @@ sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
 
+num_set = set()
+for i in range(1,31) :
+    num_set.add(i)
 
-N = int(input())
-sum_val = 0
 
-for i in range(N+1) :
-    sum_val += i
+for _ in range(28) :
+    n = int(input())
+    num_set.remove(n)
 
-print(sum_val)
+
+for num in num_set :
+    print(num)
