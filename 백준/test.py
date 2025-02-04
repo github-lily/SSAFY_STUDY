@@ -3,11 +3,11 @@ sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
 
-k,n,m = map(int,input().split())
+num_set = set()
+for _ in range(10) :
+    n = int(input())
 
+    num_set.add(n%42)
 
-ans = k*n-m
-if ans >=0 :
-    print(ans)
-else :
-    print(0)
+print(len(num_set))
+    
