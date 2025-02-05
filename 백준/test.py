@@ -3,11 +3,16 @@ sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
 
-num_set = set()
-for _ in range(10) :
-    n = int(input())
+N = int(sys.stdin.readline().strip())
+yes = no = 0
+for _ in range(N) :
+    k = int(input())    
+    if k == 1 :
+        yes += 1
+    else :
+        no += 1
 
-    num_set.add(n%42)
-
-print(len(num_set))
-    
+if yes >= no :
+    print("Junhee is cute!")
+else :
+    print("Junhee is not cute!")
