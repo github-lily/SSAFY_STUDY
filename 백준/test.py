@@ -3,29 +3,12 @@ sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
 
-N = int(input())
+S = input()  # 문자열 입력
+result = [-1] * 26  # 알파벳 개수만큼 초기화
 
+for i, char in enumerate(S):
+    index = ord(char) - ord('a')  # 알파벳의 인덱스 계산
+    if result[index] == -1:  # 처음 등장하는 경우만 저장
+        result[index] = i
 
-text = list(input())
-M = len(text)
-pre_text = text
-same_char = text
-
-
-for _ in range(N-1) :
-    text = list(input())
-    for i in range(len(text)) :
-        if pre_text :
-            if pre_text[i] == text[i] :
-                if text[i] == same_char[i] :
-                    same_char[i] = text[i]
-                else :
-                    same_char[i] =  '?'
-            else :
-                same_char[i] =  '?'
-    
-    pre_text = text
-
-ans = ''.join(same_char)
-print(ans)
-
+print(*result)  # 리스트를 공백으로 구분하여 출력
