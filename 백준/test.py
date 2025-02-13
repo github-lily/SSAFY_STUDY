@@ -2,14 +2,14 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
-# 체스 말의 기본 개수
-standard = [1, 1, 2, 2, 2, 8]
+import sys
+import math
 
-# 입력값을 리스트로 변환
-input_pieces = list(map(int, input().split()))
+# 입력 받기
+T = int(sys.stdin.readline())
 
-# 각 체스 말의 부족하거나 남은 개수 계산 후 출력
-result = [standard[i] - input_pieces[i] for i in range(6)]
-
-# 결과 출력
-print(*result)
+for _ in range(T):
+    N, M = map(int, sys.stdin.readline().split())
+    # 조합 계산: M개 중 N개를 선택하는 경우의 수
+    result = math.comb(M, N)  # math.comb(M, N) == M! / (N! * (M-N)!)
+    print(result)
