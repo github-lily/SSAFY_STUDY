@@ -6,33 +6,13 @@ import sys
 
 # 입력 받기
 N = int(input())
-stack = []
-
+num_stack = []
 for _ in range(N) :
-    cmd = list(map(int,sys.stdin.readline().split()))
+    num = input()
 
+    if num == '0' :
+        num_stack.pop()
+    else :
+        num_stack.append(num)
 
-    if cmd[0] == 1 : # push
-        stack.append(cmd[1])
-
-    elif cmd[0] == 2 : # pop
-        if stack :
-            print(stack.pop())
-        else :
-            print(-1)
-    
-    elif cmd[0] == 3 : # size
-        print(len(stack))
-
-    elif cmd[0] == 4 : # empty
-        if stack :
-            print(0)
-        else :
-            print(1)
-
-    elif cmd[0] == 5 : # top
-        if stack :
-            print(stack[-1])
-        else :
-            print(-1)
-
+print(sum(map(int, num_stack)))
