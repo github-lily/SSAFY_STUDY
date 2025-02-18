@@ -4,15 +4,32 @@ sys.stdin = open('백준/test.txt')
 # N = int(sys.stdin.readline().strip())
 import sys
 
+
+def check(value) :
+    for i in value :
+        if i == '(' :
+            stack.append(i)
+        else :
+            if stack :
+                stack.pop()
+            else :
+                print("NO")
+                return
+    if stack :
+        print("NO")
+        return
+    else :
+        print("YES")
+        return
+
 # 입력 받기
 N = int(input())
-num_stack = []
 for _ in range(N) :
-    num = input()
+    stack = []
+    val = list(input())
 
-    if num == '0' :
-        num_stack.pop()
-    else :
-        num_stack.append(num)
+    check(val)
 
-print(sum(map(int, num_stack)))
+    
+
+
