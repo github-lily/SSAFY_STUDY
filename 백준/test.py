@@ -6,29 +6,45 @@ import sys
 
 
 def check(value) :
+    stack = []
     for i in value :
-        if i == '(' :
+        if i == '(' or i == '[' :
             stack.append(i)
-        else :
+        elif i == ')' :
             if stack :
-                stack.pop()
+                j = stack.pop()
+                if j != '(' :
+                    print("no")
+                    return
             else :
-                print("NO")
+                print("no")
+                return
+                
+        elif i == ']' :
+            if stack :
+                j = stack.pop()
+                if j != '[' :
+                    print("no")
+                    return
+            else :
+                print("no")
                 return
     if stack :
-        print("NO")
+        print("no")
         return
     else :
-        print("YES")
+        print("yes")
         return
 
 # 입력 받기
-N = int(input())
-for _ in range(N) :
-    stack = []
-    val = list(input())
 
-    check(val)
+import sys
+while True :
+    text = sys.stdin.readline().rstrip()
+    if text == "." :
+        break
+
+    check(text)
 
     
 
