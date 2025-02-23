@@ -2,16 +2,25 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
-# import sys
-# import queue
 
-# N = int(input())
-# cards = [x for x in range(1,N+1)]
-# 
+import sys
+import heapq
 
-# while len(cards) > 1 :
-#     cards.pop(0)
-#     a = cards.pop(0)
-#     cards.append(a)
-# 
-print(*cards)
+input = sys.stdin.readline
+q = []
+
+N = int(input().strip())
+
+for _ in range(N) :
+    x = int(input().strip())
+
+    if x == 0 :
+        if q :
+            print(-heapq.heappop(q))
+        else :
+            print(0)
+
+    else :
+        heapq.heappush(q, -x)
+        
+
