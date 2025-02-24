@@ -3,24 +3,20 @@ sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
 
-import sys
-import heapq
+from collections import deque
 
-input = sys.stdin.readline
-q = []
+N, K = map(int,input().split())
 
-N = int(input().strip())
+q = deque(range(1,N+1))
+result = []
 
-for _ in range(N) :
-    x = int(input().strip())
+while q:
+    for _ in range(K-1) :
+        q.append(q.popleft())
+    result.append(q.popleft())
 
-    if x == 0 :
-        if q :
-            print(-heapq.heappop(q))
-        else :
-            print(0)
 
-    else :
-        heapq.heappush(q, -x)
-        
+ans = '<{}>'.format(", ".join(map(str,result)))
+
+print(ans)
 
