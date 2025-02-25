@@ -5,18 +5,45 @@ sys.stdin = open('백준/test.txt')
 
 from collections import deque
 
-N, K = map(int,input().split())
+N = int(input())
+q = deque()
 
-q = deque(range(1,N+1))
-result = []
+for _ in range(N) :
+    cmd = list(map(int,input().split()))
 
-while q:
-    for _ in range(K-1) :
-        q.append(q.popleft())
-    result.append(q.popleft())
+    if cmd[0] == 1 :
+        q.appendleft(cmd[1])
+    
+    elif cmd[0] == 2 :
+        q.append(cmd[1])
+    
+    elif cmd[0] == 3 :
+        if q :
+            num = q.popleft()
+            print(num)
+        else :
+            print(-1)
+    
+    elif cmd[0] == 4 :
+        if q :
+            num = q.pop()
+            print(num)
+        else :
+            print(-1)
+    
+    elif cmd[0] == 5 :
+        len = len(q)
+        print(len)
 
+    elif cmd[0] == 6 :
+        if q :
+            print(0)
+        else :
+            print(1)
+    
+    elif cmd[0] == 7 :
+        if q :
+            q.
+        
 
-ans = '<{}>'.format(", ".join(map(str,result)))
-
-print(ans)
 
