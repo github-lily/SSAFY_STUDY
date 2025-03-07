@@ -2,22 +2,15 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 # N = int(sys.stdin.readline().strip())
-T = int(input())
-for _ in range(T):
-    N = int(input())
-    arr = [list(map(int, input().split())) for _ in range(2)]
+N = int(input())
+F = int(input())
 
-    if N == 1:
-        print(max(arr[0][0], arr[1][0]))
-        continue
+# 마지막 두 자리를 00으로 변경
+N = (N // 100) * 100
 
-    dp = [[0] * N for _ in range(2)]
+# F로 나누어떨어지는 가장 작은 수 찾기
+while N % F != 0:
+    N += 1
 
-    dp[0][0], dp[1][0] = arr[0][0], arr[1][0]
-    dp[0][1], dp[1][1] = arr[0][1] + dp[1][0], arr[1][1] + dp[0][0]
-
-    for j in range(2, N):
-        dp[0][j] = arr[0][j] + max(dp[1][j-1], dp[1][j-2])
-        dp[1][j] = arr[1][j] + max(dp[0][j-1], dp[0][j-2])
-
-    print(max(dp[0][N-1], dp[1][N-1]))
+# 마지막 두 자리만 출력
+print(str(N)[-2:])
