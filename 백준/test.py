@@ -1,7 +1,14 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-x,y,w,h = map(int,input().split())
+plate = input()
+N = len(plate)
+h = 10
 
-ans = min(x,y,w-x,h-y)
-print(ans)
+for i in range(1,N) :
+    if plate[i-1] == plate[i] :
+        h += 5
+    else :
+        h += 10
+
+print(h)
