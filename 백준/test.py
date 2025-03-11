@@ -1,14 +1,18 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-plate = input()
-N = len(plate)
-h = 10
+T = int(input())
+for _ in range(T) :
+    k = int(input())
+    n = int(input())
 
-for i in range(1,N) :
-    if plate[i-1] == plate[i] :
-        h += 5
-    else :
-        h += 10
+    dp = [0] * n
+    for w in range(1,n+1) :
+        dp[w-1] = w
 
-print(h)
+    for _ in range(1, k+1) :
+        for i in range(1,n) :
+            dp[i] += dp[i-1]
+
+    
+    print(dp[n-1])
