@@ -2,24 +2,15 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 
-def check() :
-    global word, N, half
-    if N % 2 == 0 :
-        for i in range(half) :
-            if word[half-i] != word[half+i-1] :
-                return 0
+def find() :
+    for x in range(-999,1000) :
+        for y in range(-999,1000) : 
+            if a*x + b*y == c and d*x + e*y ==f :
+                return x,y
 
-    else :
-        for i in range(1,half+1) :
-            if word[half-i] != word[half+i] :
-                return 0
-            
-    return 1
+a,b,c,d,e,f = map(int,input().split())
 
 
-word = input()
-N = len(word)
-half = N // 2
+x,y = find()
 
-ans = check()
-print(ans)
+print(x,y)
