@@ -2,15 +2,27 @@ import sys
 sys.stdin = open('백준/test.txt')
 
 
-def find() :
-    for x in range(-999,1000) :
-        for y in range(-999,1000) : 
-            if a*x + b*y == c and d*x + e*y ==f :
-                return x,y
+def check() :
+    for ans in range(n,N) :
+        ans_str = str(ans)
+        lenth = len(ans_str)
+        num = ans
+        # 자리수 더하기
+        for i in range(lenth) :
+            num += int(ans_str[i])
+        
+        # 일치하면 중단
+        if num == N :
+            return ans
+    
+    return 0
+        
 
-a,b,c,d,e,f = map(int,input().split())
+
+N = int(input())
+M = len(str(N))
+n = int(N) - 9*M
 
 
-x,y = find()
-
-print(x,y)
+ans = check()
+print(ans)
