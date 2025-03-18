@@ -1,9 +1,11 @@
 import sys
 sys.stdin = open('백준/test.txt')
 
-def MenOfPassion(A[], n) :
-    i = ⌊n / 2⌋;
-    return A[i]; # 코드1
+jongsu = input().strip()
+doctor = input().strip()
 
-N = int(input())
+if len(jongsu) >= len(doctor):
+    print("go")
+else:
+    print("no")
 
