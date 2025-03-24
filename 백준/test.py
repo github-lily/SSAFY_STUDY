@@ -1,67 +1,35 @@
 import sys
-sys.stdin = open('백준/test.txt')
+sys.stdin = open("백준/test.txt")
 
-def check() :
-    global N, depth
-
-    num_lst = []
-    while N // 2 > 1 :
-        if N % 2 == 0 :     # 짝수라면
-            for i in range(1, (N//2)+1) :
-                if (i == user1 and i+1 == user2) or (i == user2 and i+1 == user1) :
-                    print(depth)
-                    return
-                elif i+1 == user1 or i+1 == user2 :
-                    num_lst.append(i+1)
-                else :
-                    num_lst.append(i)
-
-        else :              # 홀수라면
-            for i in range(1, (N//2)+1) :
-                if (i == user1 and i+1 == user2) or (i == user2 and i+1 == user1) :
-                    print(depth)
-                    return
-                elif i+1 == user1 or i+1 == user2 :
-                    num_lst.append(i+1)
-                else :
-                    num_lst.append(i)
-            
-
-
-# 리스트의 길이 N
-N, user1, user2 = map(int,input().split())
-
-depth = 1
-lst = [x for x in range(1,N+1)]
-
-while 
-    for i in range(1, (N//2)+1) :
-        if (i == user1 and i+1 == user2) or (i == user2 and i+1 == user1) :
-            print(depth)
-            return
+# 지수 찾는 함수
+def find(i,esp) :
+    
+    while True :
+        if i > 2**esp :
+            return esp-1
+        esp += 1
     
 
-리스트의 길이 N
-N, user1, user2 = map(int,input().split())
+def check(n,m) :
+    # 지수 찾기
+    x = find(n,0)
+    y = find(m,0)
 
-
-lst = []
-depth = 1
-for i in range(1,N+1) :
-    # 답인 경우
-    if (i == user1 and i+1 == user2) or (i == user2 and i+1 == user1) :
-        print(depth)
-        break
-    
-    # i+1이 user1 또는 user2인 경우
-    elif i+1 == user1 :
-        lst.append(i+1)
-        user1 == lst[n]
+    # 지수 그룹이 달라질때까지 계산
+    while True : 
+        # 지수 그룹이 다르면 큰 지수 그룹 
+        if x != y:
+            ans = max(x,y)
+            return ans
         
-    
-    else :
-        lst.append(i)
-    
-    depth += 1
+        # 지수 그룹이 같으면 지수 그룹이 달라질때까지 계산 
+        else :
+            n = n - (2**(x-1))
+            m = m - (2**(x-1))
+            x = find(n,0)
+            y = find(m,0)
 
+length, n, m = map(int,input().split())
 
+ans = check(n,m)
+print(ans)
