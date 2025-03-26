@@ -1,13 +1,21 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-N = int(sys.stdin.readline().strip())
-arr = [int(sys.stdin.readline().strip()) for _ in range(N)]
+# N = int(sys.stdin.readline().strip())
+# arr = [int(sys.stdin.readline().strip()) for _ in range(N)]
 
-arr.sort()
+# arr.sort()
 
-for num in arr :
-    print(num)
+# for num in arr :
+#     print(num)
+import sys
+
+N,k = map(int,input().split())
+scores = list(map(int,input().split()))
+
+
+scores.sort()
+print(scores[-k])
 
 # # 지수 찾는 함수
 # def find(i,esp) :
