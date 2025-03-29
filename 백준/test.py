@@ -1,10 +1,13 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-num_lst = sorted([int(input()) for _ in range(5)])
+N = int(input())
+lst = [list(map(int,input().split())) for _ in range(N)]
 
-print(sum(num_lst)//5)
-print(num_lst[2])
+
+for line in sorted(lst) :
+    print(*line)
+    
 
 # # 지수 찾는 함수
 # def find(i,esp) :
