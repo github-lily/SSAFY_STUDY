@@ -2,11 +2,11 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 N = int(input())
-lst = [list(map(int,input().split())) for _ in range(N)]
+lst = [int(input()) for _ in range(N)]
 
 
 for line in sorted(lst) :
-    print(*line)
+    print(line)
     
 
 # # 지수 찾는 함수
