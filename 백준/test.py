@@ -1,13 +1,22 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-N = int(input())
-lst = [int(input()) for _ in range(N)]
+
+import sys
+N = int(sys.stdin.readline())
+count = [0] * 10001
+
+for _ in range(N) :
+    num = int(sys.stdin.readline())
+    count[num] += 1
+
+for i in range(10001) :
+    if count[i] > 0 :
+        for _ in range(count[i]) :
+            print(i)
 
 
-for line in sorted(lst) :
-    print(line)
-    
+
 
 # # 지수 찾는 함수
 # def find(i,esp) :
