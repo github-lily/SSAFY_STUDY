@@ -2,18 +2,16 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-import sys
-N = int(sys.stdin.readline())
-count = [0] * 10001
-
+N = int(input())
+lst = []
 for _ in range(N) :
-    num = int(sys.stdin.readline())
-    count[num] += 1
+    x,y = map(int,input().split())
+    lst.append((x,y))
 
-for i in range(10001) :
-    if count[i] > 0 :
-        for _ in range(count[i]) :
-            print(i)
+lst.sort(key=lambda x : (x[1], x[0]) )
+
+for line in lst :
+    print(*line)
 
 
 
