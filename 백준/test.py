@@ -3,18 +3,16 @@ sys.stdin = open("백준/test.txt")
 
 
 N = int(input())
-lst = []
-for _ in range(N) :
-    x,y = map(int,input().split())
-    lst.append((x,y))
 
-lst.sort(key=lambda x : (x[1], x[0]) )
+member = []
+for i in range(N) :
+    age,name = input().split()
+    member.append((int(age),name, i+1))
 
-for line in lst :
-    print(*line)
+member.sort(key = lambda x : (x[0], x[2]))
 
-
-
+for person in member :
+    print(person[0], person[1])
 
 # # 지수 찾는 함수
 # def find(i,esp) :
