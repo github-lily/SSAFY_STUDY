@@ -2,17 +2,26 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-N = int(input())
+N,M = map(int,input().split())
 
-member = []
-for i in range(N) :
-    age,name = input().split()
-    member.append((int(age),name, i+1))
+text_set = set()
+ans = 0
 
-member.sort(key = lambda x : (x[0], x[2]))
+# 집합 S에 포함된 문자열
+for _ in range(N) :
+    text = input()
+    text_set.add(text)
+    
+# 확인해야할 문자열
+for _ in range(M) :
+    check_text = input()
+    if check_text in text_set :
+        ans += 1
 
-for person in member :
-    print(person[0], person[1])
+print(ans)
+
+
+
 
 # # 지수 찾는 함수
 # def find(i,esp) :
