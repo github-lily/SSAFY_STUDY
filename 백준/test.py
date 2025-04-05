@@ -2,25 +2,20 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-N,M = map(int,input().split())
+N = int(input())
 
-text_set = set()
-ans = 0
-
-# 집합 S에 포함된 문자열
+work = set()
 for _ in range(N) :
-    text = input()
-    text_set.add(text)
-    
-# 확인해야할 문자열
-for _ in range(M) :
-    check_text = input()
-    if check_text in text_set :
-        ans += 1
+    list = input().split()
+    if list[1] == 'enter' :
+        work.add(list[0])
+    else :
+        work.remove(list[0])
 
-print(ans)
+sort_work = sorted(work,reverse=True)
 
-
+for name in sort_work:
+    print(name)
 
 
 # # 지수 찾는 함수
