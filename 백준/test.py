@@ -2,20 +2,16 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-N = int(input())
+a,b = map(int,input().split())
+A = set(map(int,input().split()))
+B = set(map(int,input().split()))
 
-work = set()
-for _ in range(N) :
-    list = input().split()
-    if list[1] == 'enter' :
-        work.add(list[0])
-    else :
-        work.remove(list[0])
+AB = A-B
+BA = B-A
+ans = len(AB|BA)
+print(ans)
 
-sort_work = sorted(work,reverse=True)
 
-for name in sort_work:
-    print(name)
 
 
 # # 지수 찾는 함수
