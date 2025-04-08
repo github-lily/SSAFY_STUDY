@@ -1,28 +1,16 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-chess = [list(input()) for _ in range(8)]
+num_lst = []
+for i in range(1,46) :
+    num_lst += [i]*i
 
 
-# 하얀칸
-# i가 짝수일 때 j도 짝수인 곳
-# i가 홀수일 때 j도 홀수인 곳
-ans = 0
+n,m = map(int,input().split())
 
-for i in range(8) :
-    for j in range(8) :
-        is_odd_j = j % 2
-        # 짝수일 때
-        if i % 2 == 0 :
-            if is_odd_j == 0 and chess[i][j] == "F" :
-                ans += 1
-        # 홀수일 때
-        else :
-            if is_odd_j == 1 and chess[i][j] == "F" :
-                ans += 1
 
-print(ans)
-             
+print(sum(num_lst[n-1:m]))
+
 
 
 
