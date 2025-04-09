@@ -1,17 +1,22 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-num_lst = []
-for i in range(1,46) :
-    num_lst += [i]*i
+members = []
+while True :
+    name, age, weight = input().split()
 
+    if int(age) == 0 :
+        break
 
-n,m = map(int,input().split())
+    if int(age) > 17 or int(weight) >= 80 :
+        members.append((name, "Senior"))
+    else : 
+        members.append((name,"Junior"))
 
+for member in members :
+    print(*member)
 
-print(sum(num_lst[n-1:m]))
-
-
+    
 
 
 # # 지수 찾는 함수
