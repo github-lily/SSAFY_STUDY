@@ -1,20 +1,18 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-members = []
-while True :
-    name, age, weight = input().split()
+nums = list(map(int, input().split()))
 
-    if int(age) == 0 :
+i = 1
+while True:
+    count = 0
+    for num in nums:
+        if i % num == 0:
+            count += 1
+    if count >= 3:
+        print(i)
         break
-
-    if int(age) > 17 or int(weight) >= 80 :
-        members.append((name, "Senior"))
-    else : 
-        members.append((name,"Junior"))
-
-for member in members :
-    print(*member)
+    i += 1
 
     
 
