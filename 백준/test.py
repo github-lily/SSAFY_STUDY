@@ -1,18 +1,19 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-nums = list(map(int, input().split()))
-
-i = 1
-while True:
-    count = 0
-    for num in nums:
-        if i % num == 0:
-            count += 1
-    if count >= 3:
-        print(i)
-        break
-    i += 1
+for _ in range(3) :
+    N = int(input())
+    sum_val = 0
+    for _ in range(N) :
+        num = int(input())
+        sum_val += num
+    
+    if sum_val > 0 :
+        print('+')
+    elif sum_val == 0 :
+        print("0")
+    else :
+        print("-")
 
     
 
