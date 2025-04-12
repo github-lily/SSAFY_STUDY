@@ -1,19 +1,15 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-for _ in range(3) :
-    N = int(input())
-    sum_val = 0
-    for _ in range(N) :
-        num = int(input())
-        sum_val += num
-    
-    if sum_val > 0 :
-        print('+')
-    elif sum_val == 0 :
-        print("0")
-    else :
-        print("-")
+def reverse_number(n):
+    return int(str(n)[::-1])
+
+x, y = input().split()
+x_reversed = reverse_number(x)
+y_reversed = reverse_number(y)
+
+result = reverse_number(x_reversed + y_reversed)
+print(result)
 
     
 
