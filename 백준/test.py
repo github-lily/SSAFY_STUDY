@@ -1,17 +1,33 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-def reverse_number(n):
-    return int(str(n)[::-1])
+N = int(input())
 
-x, y = input().split()
-x_reversed = reverse_number(x)
-y_reversed = reverse_number(y)
+temp = list(map(int,input().split()))
 
-result = reverse_number(x_reversed + y_reversed)
-print(result)
+# lst = []
+# for i in range(1,N+1) :
+#     lst.append((i,temp[i-1]))
 
+# num = 0
+# ans = []
+# while lst :
+#     order =lst.pop(num)
+#     print(order)
     
+order_lst = []
+num = 0
+
+while temp :
+    order_lst.append(num+1)
+    temp_num = temp.pop(num)
+    num += temp_num
+
+print(order_lst)
+    
+
+
+
 
 
 # # 지수 찾는 함수
