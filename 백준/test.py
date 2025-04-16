@@ -2,31 +2,12 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 N = int(input())
+seat = list(map(int,input().split()))
 
-temp = list(map(int,input().split()))
+seat_set = set(seat)
 
-# lst = []
-# for i in range(1,N+1) :
-#     lst.append((i,temp[i-1]))
-
-# num = 0
-# ans = []
-# while lst :
-#     order =lst.pop(num)
-#     print(order)
-    
-order_lst = []
-num = 0
-
-while temp :
-    order_lst.append(num+1)
-    temp_num = temp.pop(num)
-    num += temp_num
-
-print(order_lst)
-    
-
-
+ans = len(seat) - len(seat_set)
+print(ans)
 
 
 
