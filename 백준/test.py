@@ -1,22 +1,24 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-N, K = map(int,input().split())
-cnt = 0
-coins = []
-for _ in range(N) :
-    coins.append(int(input()))
+n = int(input())
+player_list = []
+result = []
 
-# 그리디에 맞게 역순으로 출력
-coins = sorted(coins, reverse=True)
+for _ in range(n):
+    a = input()
+    player_list.append(a[0])
 
-for coin in coins :
-    cnt += K // coin
-    K %= coin
+first_names = set(player_list)
 
-print(cnt)
+for i in first_names:
+    if player_list.count(i) >= 5:
+        result.append(i)
 
-
+if len(result) > 0:
+    print(''.join(sorted(result)))
+else:
+    print("PREDAJA")
 
 # # 지수 찾는 함수
 # def find(i,esp) :
