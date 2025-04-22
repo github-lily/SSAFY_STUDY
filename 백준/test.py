@@ -1,33 +1,25 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
+N, M = map(int,input().split())
 
-N = int(input())
+poketmons_num = {}      # key = 포켓몬 번호
+poketmons_name = {}     # key = 포켓몬 이름
 
-A = list(map(int,input().split()))
-B = list(map(int,input().split()))
+for i in range(1,N+1) :
+    name = input()
+    poketmons_num[i] = name
+    poketmons_name[name] = i
 
-ans = 0
-
-# B 인덱스와 함께 값 저장
-idx_B = []
-
-for i in range(N) :
-    idx_B.append((B[i],i))
-
-# B 오름차순 정렬
-idx_B.sort(key=lambda x:x[0])
-
-
-# A  내림차순 정렬(그리디)
-A.sort(reverse=True)
+for _ in range(M) :
+    q = input()
+    if q.isdigit() :    # 숫자로만 되어있다면
+        # print(q)
+        print(poketmons_num[int(q)])
+    else :
+        print(poketmons_name[q])
 
 
-
-for idx in range(N) :
-    ans += A[idx] * idx_B[idx][0]
-
-print(ans)
 
 # # 지수 찾는 함수
 # def find(i,esp) :
