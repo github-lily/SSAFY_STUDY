@@ -1,23 +1,29 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-N, M = map(int,input().split())
 
-poketmons_num = {}      # key = 포켓몬 번호
-poketmons_name = {}     # key = 포켓몬 이름
 
-for i in range(1,N+1) :
-    name = input()
-    poketmons_num[i] = name
-    poketmons_name[name] = i
+while True :
+    # 길이값 오름차순 정렬렬
+    length = sorted(map(int,input().split()))
 
-for _ in range(M) :
-    q = input()
-    if q.isdigit() :    # 숫자로만 되어있다면
-        # print(q)
-        print(poketmons_num[int(q)])
+    if sum(length) == 0 :
+        break
+
+    a = length[0]
+    b = length[1]
+    c = length[2]
+
+    # 분기
+    if a == b == c :
+        print("Equilateral")
+    elif a + b <= c :
+        print("Invalid")
+    elif a == b != c or a != b == c or a == c != b :
+        print("Isosceles")
     else :
-        print(poketmons_name[q])
+        print("Scalene")
+
 
 
 
