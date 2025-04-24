@@ -3,27 +3,16 @@ sys.stdin = open("백준/test.txt")
 
 
 
-while True :
-    # 길이값 오름차순 정렬렬
-    length = sorted(map(int,input().split()))
+octal = input()
 
-    if sum(length) == 0 :
-        break
+binary = ''
+for i in range(len(octal)):
+    b = bin(int(octal[i]))[2:].zfill(3)  # 2진수로 변환 후 3자리 채우기
+    if i == 0:
+        b = str(int(b))  # 첫 자리의 경우 앞의 0 제거
+    binary += b
 
-    a = length[0]
-    b = length[1]
-    c = length[2]
-
-    # 분기
-    if a == b == c :
-        print("Equilateral")
-    elif a + b <= c :
-        print("Invalid")
-    elif a == b != c or a != b == c or a == c != b :
-        print("Isosceles")
-    else :
-        print("Scalene")
-
+print(binary)
 
 
 
