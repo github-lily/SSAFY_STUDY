@@ -2,17 +2,11 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
+N,M = map(int,input().split())
 
-octal = input()
+print(abs(N-M))
 
-binary = ''
-for i in range(len(octal)):
-    b = bin(int(octal[i]))[2:].zfill(3)  # 2진수로 변환 후 3자리 채우기
-    if i == 0:
-        b = str(int(b))  # 첫 자리의 경우 앞의 0 제거
-    binary += b
 
-print(binary)
 
 
 
