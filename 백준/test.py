@@ -1,38 +1,30 @@
 import sys 
 sys.stdin = open("백준/test.txt")
 
-from collections import deque
 
 N = int(input())
 
-
-tree = [[] for _ in range(N+1)]
-p = [0] * (N+1)
-
-
-# 인접 노드 저장
-for _ in range(N-1) :
-    n1,n2 = map(int,input().split())
-    tree[n1].append(n2)
-    tree[n2].append(n1)
+from collections import deque
+q = deque([x for x in range(1,N+1)])
+pointer = 0
 
 
-# 트리 순회
-def bfs(start) :
-    q = deque([start])
-    while q :
-        current = q.popleft()
-        for next in tree[current] :
-            if p[next] == 0 :
-                p[next] = current
-                q.append(next)
+while q :
 
-bfs(1)
+    if q :
+        # 맨 첫번째 카드 버리기
+        num = q.popleft()
 
-# 정답 출력
-for i in range(2,N+1) :
-    print(p[i]) 
+        if q :
+            # 두번째 카드 뽑아서 맨 뒤로 넣기기
+            q.append(q.popleft())
+        else :
+            print(num)
+        
 
+
+
+    # 두번째 카드를 맨 끝으로 옮기기
 
 # # 지수 찾는 함수
 # def find(i,esp) :
