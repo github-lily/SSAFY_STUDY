@@ -1,30 +1,27 @@
-import sys 
+import sys
 sys.stdin = open("백준/test.txt")
 
+import sys
+input = sys.stdin.readline
 
-N = int(input())
+T = int(input())
+for _ in range(T) :
+    result = input().strip() 
+    N = len(result)
 
-from collections import deque
-q = deque([x for x in range(1,N+1)])
-pointer = 0
+    final_score = 0
+    score = 0
 
+    for mark in result :
+        if mark == 'O' :
+            score += 1
+            final_score += score
 
-while q :
-
-    if q :
-        # 맨 첫번째 카드 버리기
-        num = q.popleft()
-
-        if q :
-            # 두번째 카드 뽑아서 맨 뒤로 넣기기
-            q.append(q.popleft())
         else :
-            print(num)
-        
+            score = 0
 
+    print(final_score)
 
-
-    # 두번째 카드를 맨 끝으로 옮기기
 
 # # 지수 찾는 함수
 # def find(i,esp) :
