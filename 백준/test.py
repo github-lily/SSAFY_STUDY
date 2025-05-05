@@ -4,16 +4,39 @@ sys.stdin = open("백준/test.txt")
 import sys
 input = sys.stdin.readline
 
-A, B, V = map(int,input().split())
+from collections import deque
 
-target = V-B
+N = int(input())
+q = deque()
 
-one_day = A-B
+for _ in range(N) :
+    cmd = list(input().strip().split())
+    req = cmd[0]
+    # print(req)
+    if req == 'push' :
+        q.append(cmd[1])
+    
+    elif req == 'size' :
+        print(len(q))
+    
+    else :
+        if q :
+            if req == 'pop' :
+                print(q.popleft())
 
-days = target // one_day
+            elif req == 'empty' :
+                print(0)
+            elif req == 'front' :
+                print(q[0])
+            
+            elif req == 'back' :
+                print(q[-1])
+        else :
+            if req == 'empty' :
+                print(1)
+            else :
+                print(-1)
+            
 
-if target % one_day != 0 :
-    days += 1
 
 
-print(days)
