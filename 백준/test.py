@@ -8,46 +8,46 @@ input = sys.stdin.readline
 
 from collections import deque
 
-T = int(input())
-for _ in range(T) :
-    N = int(input())
-    nums = list(map(int,input().split()))
-    v = [0] * N
-
-
-    q = deque()
-    cycle = 0
-
-    for i in range(N) :
-        
-        # 자기 자신 순환 
-        if i+1 == v[i] :
-            cycle += 1
-            v[i] = 1
-
-        elif v[i] == 0 :
-            q.append(i+1)
-            while q :
-                c = q.popleft() 
-                if v[c-1] == 0 :
-                    q.append(nums[c-1])
-                    v[c-1] = 1
-                else :
-                    cycle += 1
-
-    print(cycle)
-
-
-
-
-
-
-
-
-
-
-
-
+q = deque()
+N = int(input())
+for _ in range(N) :
+    cmd = input().split()
+    # print(len(cmd))
+    # print(cmd)
+    # print(cmd[0])
+    if cmd[0] == "push_front" :
+        q.appendleft(int(cmd[1]))
+    elif cmd[0] == "push_back" :
+        q.append(int(cmd[1]))
+    elif cmd[0] == "pop_front" :
+        if q :
+            print(q.popleft())
+        else :
+            print(-1)
+    elif cmd[0] == "pop_back" :
+        if q :
+            print(q.pop())
+        else :
+            print(-1)
+    elif cmd[0] == "size" :
+        print(len(q))
+    elif cmd[0] == "empty" :
+        if q :
+            print(0)
+        else :
+            print(1)
+    elif cmd[0] == "front" :
+        if q :
+            print(q[0])
+        else :
+            print(-1)
+    elif cmd[0] == "back" :
+        if q :
+            print(q[-1])
+        else :
+            print(-1)
+    else :
+        print("해당없음")
 
 
 
