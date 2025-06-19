@@ -1,24 +1,14 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-date = list(map(int,input().split()))
 
+import sys
+input = sys.stdin.readline
 
-
-month_date = [31,28,31,30,
-              31,30,31,31,
-              30,31,30,31]
-
-
-day_of_week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" ]
-    
-total_date = sum(month_date[:date[0]-1]) + date[1]
-
-ans = day_of_week[total_date % 7]
-print(ans)
-
-
-
+T = int(input())
+for _ in range(T) :
+    lst = sorted(map(int,input().split()),reverse=True)
+    print(lst[2])
 
 # 백준 14502 연구소
 '''
