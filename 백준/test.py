@@ -2,13 +2,17 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-import sys
-input = sys.stdin.readline
+N = int(input())
 
-T = int(input())
-for _ in range(T) :
-    lst = sorted(map(int,input().split()),reverse=True)
-    print(lst[2])
+a = 1
+cnt = 1
+
+while N > a :
+    a = a + (6 * cnt)
+    cnt += 1
+
+print(cnt)
+
 
 # 백준 14502 연구소
 '''
