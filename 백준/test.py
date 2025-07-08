@@ -2,17 +2,57 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-N = int(input())
+# import sys
+# input = sys.stdin.readline
 
-a = 1
-cnt = 1
+N,M = map(int,input().split())
 
-while N > a :
-    a = a + (6 * cnt)
-    cnt += 1
+if N > M :
+    ans = (N-1) + ((M-1)*N)
+else :
+    ans = (M-1) + ((N-1)*M)
 
-print(cnt)
+print(ans)
 
+# import sys
+# input = sys.stdin.readline
+
+# def check(r,c,size) :
+#     color = arr[r][c]
+#     for i in range(r,r+size) :
+#         for j in range(c,c+size) :
+#             if arr[i][j] != color :
+#                 return False
+#     return True
+
+# def divide(r,c,size) :
+#     global white, blue
+#     if check(r,c,size) :
+#         if arr[r][c] == 0 :
+#             white += 1
+#         else :
+#             blue += 1
+#         return
+    
+#     half = size // 2
+#     divide(r, c, half)
+#     divide(r, c+half, half)
+#     divide(r+half, c, half)
+#     divide(r+half, c+half, half)
+
+
+
+
+# N = int(input())
+# arr = [list(map(int,input().split())) for _ in range(N)]
+
+# white = 0
+# blue = 0
+
+# divide(0,0,N)
+
+# print(white)
+# print(blue)
 
 # 백준 14502 연구소
 '''
