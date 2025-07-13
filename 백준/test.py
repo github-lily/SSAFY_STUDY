@@ -5,14 +5,18 @@ sys.stdin = open("백준/test.txt")
 # import sys
 # input = sys.stdin.readline
 
-N,M = map(int,input().split())
+import sys
+input = sys.stdin.readline
 
-if N > M :
-    ans = (N-1) + ((M-1)*N)
-else :
-    ans = (M-1) + ((N-1)*M)
+N = int(input())
+lst = list(map(int,input().split()))
+M = int(input())
+for _ in range(M) :
+    i,j = map(int,input().split())
+    ans = sum(lst[i-1 : j])
+    print(ans)
 
-print(ans)
+
 
 # import sys
 # input = sys.stdin.readline
