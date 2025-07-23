@@ -8,11 +8,32 @@ sys.stdin = open("백준/test.txt")
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-lst = set(map(int,input().split()))
-ans = sorted(lst)
-print(*ans)
+n,m = map(int,input().split())
+lcd = 0
+lcm = 0
 
+# 최소공약수(least common divisor)
+n_lcd = set()
+m_lcd = set()
+
+for k in range(1,n) :
+    if n % k == 0 :
+        n_lcd.update([k,n//k])
+    if m % k == 0 :
+        m_lcd.update([k,m//k])
+
+lcd_sum = list(n_lcd&m_lcd)
+print(max(lcd_sum))
+
+
+
+# 최소공배수(least common multiple)
+for i in range(1, 9999) :
+    if (n*i) % m == 0 :
+        lcm = n*i
+        break
+
+print(lcm)
 
 # import sys
 # input = sys.stdin.readline
