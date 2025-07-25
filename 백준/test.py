@@ -2,39 +2,28 @@ import sys
 sys.stdin = open("백준/test.txt")
 
 
-# import sys
-# input = sys.stdin.readline
-
 import sys
 input = sys.stdin.readline
 
-n,m = map(int,input().split())
-lcd = 0
-lcm = 0
+N = int(input())
+time_table = []
+for _ in range(N) :
+    s,e = map(int,input().split())
+    time_table.append([s,e])
 
-# 최소공약수(least common divisor)
-n_lcd = set()
-m_lcd = set()
+# 종료시간 빠른순 정렬 + 시작순서 빠른순 정렬(시작하자마자 끝나는 경우 고려)
+time_table.sort(key = lambda x : (x[1], x[0]))
+# print(arr)
 
-for k in range(1,n) :
-    if n % k == 0 :
-        n_lcd.update([k,n//k])
-    if m % k == 0 :
-        m_lcd.update([k,m//k])
-
-lcd_sum = list(n_lcd&m_lcd)
-print(max(lcd_sum))
+k = 0
+cnt = 0
+for start, end in time_table :
+    if start >= k :
+        k = end
+        cnt += 1
 
 
-
-# 최소공배수(least common multiple)
-for i in range(1, 9999) :
-    if (n*i) % m == 0 :
-        lcm = n*i
-        break
-
-print(lcm)
-
+print(cnt)
 # import sys
 # input = sys.stdin.readline
 
