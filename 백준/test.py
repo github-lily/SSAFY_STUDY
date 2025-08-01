@@ -1,59 +1,27 @@
 import sys
 sys.stdin = open("백준/test.txt")
 
-
 import sys
 input = sys.stdin.readline
 
-S = input().strip()
-lst = []
+T = int(input())
+for _ in range(T) :
+    N = int(input())        # 동전 종류 개수
+    coins = list(map(int,input().split()))
+    M = int(input())        # 동전으로 만들어야 할 금액
 
-for i in range(len(S)) :
-    lst.append(S[i:])
+    dp = [0]*(M+1)
+    dp[0] = 1
 
-lst.sort()
-for sen in lst :
-    print(sen)
-
-# import sys
-# input = sys.stdin.readline
-
-# def check(r,c,size) :
-#     color = arr[r][c]
-#     for i in range(r,r+size) :
-#         for j in range(c,c+size) :
-#             if arr[i][j] != color :
-#                 return False
-#     return True
-
-# def divide(r,c,size) :
-#     global white, blue
-#     if check(r,c,size) :
-#         if arr[r][c] == 0 :
-#             white += 1
-#         else :
-#             blue += 1
-#         return
+    for coin in coins :
+        for j in range(M+1) :
+            if j-coin >= 0 :
+                dp[j] = dp[j] + dp[j-coin]
     
-#     half = size // 2
-#     divide(r, c, half)
-#     divide(r, c+half, half)
-#     divide(r+half, c, half)
-#     divide(r+half, c+half, half)
+    print(dp[-1])
 
 
 
-
-# N = int(input())
-# arr = [list(map(int,input().split())) for _ in range(N)]
-
-# white = 0
-# blue = 0
-
-# divide(0,0,N)
-
-# print(white)
-# print(blue)
 
 # 백준 14502 연구소
 '''
