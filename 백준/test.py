@@ -4,24 +4,20 @@ sys.stdin = open("백준/test.txt")
 import sys
 input = sys.stdin.readline
 
-T = int(input())
-for _ in range(T) :
-    N = int(input())        # 동전 종류 개수
-    coins = list(map(int,input().split()))
-    M = int(input())        # 동전으로 만들어야 할 금액
+n,k = map(int,input().split())
+coins = []
+for _ in range(n) :
+    coins.append(int(input()))
 
-    dp = [0]*(M+1)
-    dp[0] = 1
+money = [0]*(k+1)
+money[0] = 1
 
-    for coin in coins :
-        for j in range(M+1) :
-            if j-coin >= 0 :
-                dp[j] = dp[j] + dp[j-coin]
-    
-    print(dp[-1])
+for coin in coins :
+    for i in range(1,k+1) :
+        if i-coin >= 0 :
+            money[i] += money[i-coin]
 
-
-
+print(money[-1])
 
 # 백준 14502 연구소
 '''
